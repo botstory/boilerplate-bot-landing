@@ -80,12 +80,19 @@ git config user.email "${COMMIT_AUTHOR_EMAIL}"
 
 git add -A .
 
+
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail.
 # improved by @adbre
-if [ -z `git diff --exit-code` ]; then
+#if [ -z `git diff --exit-code` ]; then
 #if [ $(git status --porcelain | wc -l) -lt 1 ]; then
-    echo "result of git status --porcelain:"
+
+if git diff --quiet ; then
+    echo "git status --porcelain:"
     echo `git status --porcelain`
+    echo "git diff --exit-code"
+    echo `git diff --exit-code`
+    echo "git diff --quiet"
+    echo `git diff --quiet`
     echo "No changes to the output on this push; exiting."
     exit 0
 fi
