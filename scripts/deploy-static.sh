@@ -20,12 +20,12 @@ function doCompile {
 mkdir -p dist
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
-if [ "${TRAVIS_PULL_REQUEST}" != "false" ]; then
-    echo "Skipping deploy of pull request; just doing a build."
-    # Clean out existing contents
-    doCompile
-    exit 0
-fi
+#if [ "${TRAVIS_PULL_REQUEST}" != "false" ]; then
+#    echo "Skipping deploy of pull request; just doing a build."
+#    # Clean out existing contents
+#    doCompile
+#    exit 0
+#fi
 
 # Save some useful information
 DEFAULT_REPO=`git config remote.origin.url`

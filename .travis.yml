@@ -10,6 +10,4 @@ env:
 
 script:
   - npm test
-
-after_success:
   - bash ./scripts/deploy-static.sh
