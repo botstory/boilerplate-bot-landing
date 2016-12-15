@@ -53,7 +53,13 @@ echo "[ ] Clone repository ${REPO}"
 git clone ${REPO} dist
 cd dist
 git checkout ${TARGET_BRANCH} || git checkout --orphan ${TARGET_BRANCH}
+git pull
+echo ""
+echo "repository had files:"
+echo `ls .`
+echo ""
 cd ..
+
 
 # Clean out existing contents
 rm -rf dist/**/* || exit 0
@@ -64,6 +70,7 @@ doCompile
 # Now let's go have some fun with the cloned repo
 cd dist
 
+echo ""
 echo "result files:"
 echo `ls .`
 echo ""
