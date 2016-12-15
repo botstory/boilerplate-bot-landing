@@ -63,8 +63,15 @@ doCompile
 
 # Now let's go have some fun with the cloned repo
 cd dist
+
+echo "result files:"
+echo `ls dist`
+echo ""
+
 git config user.name "Travis CI"
 git config user.email "${COMMIT_AUTHOR_EMAIL}"
+
+git add -A .
 
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail.
 # improved by @adbre
@@ -87,7 +94,6 @@ fi
 
 echo "[ ] Adding..."
 
-git add -A .
 git commit -m "${COMMIT_TITLE}"
 
 echo "[ ] Deploying..."
