@@ -69,6 +69,8 @@ git config user.email "${COMMIT_AUTHOR_EMAIL}"
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail.
 # improved by @adbre
 if [ $(git status --porcelain | wc -l) -lt 1 ]; then
+    echo "result of git status --porcelain:"
+    echo `git status --porcelain`
     echo "No changes to the output on this push; exiting."
     exit 0
 fi
