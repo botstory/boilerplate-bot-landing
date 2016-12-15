@@ -1,0 +1,17 @@
+sudo: required
+
+language: nodejs
+
+node_js:
+  - "7"
+
+env:
+  COMMIT_AUTHOR_EMAIL: "ievgenii.krevenets@gmail.com"
+  ENCRYPTION_LABEL: "46b6a1c2a545"
+  REPO: git@github.com:botstory/boilerplate-bot.git
+
+script:
+  - npm test
+
+after_success:
+  - bash ./scripts/deploy-static.sh

@@ -6,7 +6,7 @@
   "scripts": {
     "build:prod": "webpack --config config/webpack.prod.js  --progress --profile --bail --verbose --colors",
     "start": "webpack-dashboard -c cyan -- webpack-dev-server --config config/webpack.dev.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"No test specified yet\"",
     "watch:client": "webpack-dev-server --config config/webpack.dev.js -d --history-api-fallback --hot --inline --progress --colors --port 3000"
   },
   "repository": {
