@@ -65,7 +65,7 @@ doCompile
 cd dist
 
 echo "result files:"
-echo `ls dist`
+echo `ls .`
 echo ""
 
 git config user.name "Travis CI"
