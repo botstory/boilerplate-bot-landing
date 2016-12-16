@@ -56,11 +56,16 @@ git checkout ${TARGET_BRANCH} || git checkout --orphan ${TARGET_BRANCH}
 git pull
 echo ""
 echo "repository had files:"
+echo `pwd`
 echo `ls -la .`
 echo ""
 # Clean out existing contents
 find . -path ./.git -prune -o -exec rm -rf {} \; 2> /dev/null
 
+echo ""
+echo "repository files after remove all:"
+echo `ls -la .`
+echo ""
 cd ..
 
 # Run our compile script
@@ -71,6 +76,7 @@ cd dist
 
 echo ""
 echo "result files:"
+echo `pwd`
 echo `ls -la .`
 echo ""
 
