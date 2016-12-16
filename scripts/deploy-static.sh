@@ -1,10 +1,28 @@
 #!/bin/bash
 
+# --------------------------------------------------------------
 #
+# 1. Should generate ssh key
+# (and place it locally as deploy_key)
+# $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 #
-# based on https://gist.github.com/domenic/ec8b0fc8ab45f39403dd
+# 2. Add public key to target github repository
+# here: https://github.com/<your name>/<your repo>/settings/keys
 #
+# 3. Add private key to travis ci
+# $ travis encrypt-file deploy_key
 #
+# 4. Exclude original keys from repository
+# (deploy_key and deploy_key.pub keys)
+#
+# 5. Store encrypted key to repository
+#
+# 6. Add ENCRYPTION_LABEL and COMMIT_AUTHOR_EMAIL env variables
+# to .travis.yaml
+#
+# based on <https://gist.github.com/domenic/ec8b0fc8ab45f39403dd>
+#
+# --------------------------------------------------------------
 
 set -e # Exit with nonzero exit code if anything fails
 
@@ -20,12 +38,12 @@ function doCompile {
 mkdir -p dist
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
-#if [ "${TRAVIS_PULL_REQUEST}" != "false" ]; then
-#    echo "Skipping deploy of pull request; just doing a build."
-#    # Clean out existing contents
-#    doCompile
-#    exit 0
-#fi
+if [ "${TRAVIS_PULL_REQUEST}" != "false" ]; then
+    echo "Skipping deploy of pull request; just doing a build."
+    # Clean out existing contents
+    doCompile
+    exit 0
+fi
 
 # Save some useful information
 DEFAULT_REPO=`git config remote.origin.url`
@@ -62,23 +80,12 @@ echo ""
 # Clean out existing contents
 find . -path ./.git -prune -o -exec rm -rf {} \; 2> /dev/null
 
-echo ""
-echo "repository files after remove all:"
-echo `ls -la .`
-echo ""
-cd ..
 
 # Run our compile script
 doCompile
 
 # Now let's go have some fun with the cloned repo
 cd dist
-
-echo ""
-echo "result files:"
-echo `pwd`
-echo `ls -la .`
-echo ""
 
 git config user.name "Travis CI"
 git config user.email "${COMMIT_AUTHOR_EMAIL}"
@@ -88,20 +95,7 @@ git add -A .
 
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail.
 # improved by @adbre
-#if [ -z `git diff --exit-code` ]; then
-#if git diff --quiet ; then
-
 if [ $(git status --porcelain | wc -l) -lt 1 ]; then
-    echo "git status --porcelain:"
-    echo `git status --porcelain`
-    echo "git status"
-    echo `git status`
-    echo "git diff"
-    echo `git diff`
-    echo "git diff --exit-code"
-    echo `git diff --exit-code`
-    echo "git diff --quiet"
-    echo `git diff --quiet`
     echo "No changes to the output on this push; exiting."
     exit 0
 fi
