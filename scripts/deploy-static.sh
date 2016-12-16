@@ -56,7 +56,7 @@ git checkout ${TARGET_BRANCH} || git checkout --orphan ${TARGET_BRANCH}
 git pull
 echo ""
 echo "repository had files:"
-echo `ls .`
+echo `ls -la .`
 echo ""
 cd ..
 
@@ -72,7 +72,7 @@ cd dist
 
 echo ""
 echo "result files:"
-echo `ls .`
+echo `ls -la .`
 echo ""
 
 git config user.name "Travis CI"
@@ -89,6 +89,10 @@ git add -A .
 if git diff --quiet ; then
     echo "git status --porcelain:"
     echo `git status --porcelain`
+    echo "git status"
+    echo `git status`
+    echo "git diff"
+    echo `git diff`
     echo "git diff --exit-code"
     echo `git diff --exit-code`
     echo "git diff --quiet"
