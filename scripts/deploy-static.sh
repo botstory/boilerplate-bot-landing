@@ -72,14 +72,10 @@ git clone ${REPO} dist
 cd dist
 git checkout ${TARGET_BRANCH} || git checkout --orphan ${TARGET_BRANCH}
 git pull
-echo ""
-echo "repository had files:"
-echo `pwd`
-echo `ls -la .`
-echo ""
-# Clean out existing contents
-find . -path ./.git -prune -o -exec rm -rf {} \; 2> /dev/null
+cd ..
 
+# Clean out existing contents
+rm -rf dist/**/* || exit 0
 
 # Run our compile script
 doCompile
