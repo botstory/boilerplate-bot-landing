@@ -58,11 +58,10 @@ echo ""
 echo "repository had files:"
 echo `ls -la .`
 echo ""
-cd ..
-
-
 # Clean out existing contents
 find . -path ./.git -prune -o -exec rm -rf {} \; 2> /dev/null
+
+cd ..
 
 # Run our compile script
 doCompile
