@@ -47,6 +47,7 @@ module.exports = {
       root: projectRootPath,
       verbose: true,
       dry: false,
+      exclude: ['.git'],
     }),
     new HtmlWebpackPlugin({
       template: 'src/index.html'
