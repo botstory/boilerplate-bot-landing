@@ -13,6 +13,14 @@ var assetsPath = path.resolve(projectRootPath, './dist');
 // var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 // var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
 
+console.log('process.env.PUBLIC_PATH');
+console.log(process.env.PUBLIC_PATH);
+
+let publicPath = process.env.PUBLIC_PATH;
+if (!publicPath) {
+  publicPath = '/';
+}
+
 module.exports = {
   devtool: 'source-map',
   context: path.resolve(__dirname, '..'),
@@ -27,7 +35,7 @@ module.exports = {
     path: assetsPath,
     filename: '[name]-[chunkhash].js',
     chunkFilename: '[name]-[chunkhash].js',
-    publicPath: '/'
+    publicPath: publicPath,
   },
   module: {
     loaders: [

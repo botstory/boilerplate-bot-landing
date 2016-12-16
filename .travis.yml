@@ -6,6 +6,7 @@ node_js:
 env:
   COMMIT_AUTHOR_EMAIL: "ievgenii.krevenets@gmail.com"
   ENCRYPTION_LABEL: "46b6a1c2a545"
+  PROJECT_NAME: "boilerplate-bot"
   REPO: "git@github.com:botstory/boilerplate-bot.git"
 
 script:

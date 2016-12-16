@@ -18,6 +18,14 @@ const isVerbose = process.argv.includes('--verbose');
 // var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 // var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
 
+console.log('process.env.PUBLIC_PATH');
+console.log(process.env.PUBLIC_PATH);
+
+let publicPath = process.env.PUBLIC_PATH;
+if (!publicPath) {
+  publicPath = '/';
+}
+
 module.exports = {
   devtool: isDebug ? 'cheap-module-source-map' : 'source-map',
   context: path.resolve(__dirname, '..'),
@@ -35,8 +43,8 @@ module.exports = {
     path: assetsPath,
     filename: '[name]-[hash].js',
     chunkFilename: '[name]-[hash].js',
-    publicPath: '/',
     pathinfo: isVerbose,
+    publicPath: publicPath,
   },
   module: {
     loaders: [
