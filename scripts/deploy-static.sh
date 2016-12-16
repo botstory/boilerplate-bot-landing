@@ -89,9 +89,9 @@ git add -A .
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail.
 # improved by @adbre
 #if [ -z `git diff --exit-code` ]; then
-#if [ $(git status --porcelain | wc -l) -lt 1 ]; then
+#if git diff --quiet ; then
 
-if git diff --quiet ; then
+if [ $(git status --porcelain | wc -l) -lt 1 ]; then
     echo "git status --porcelain:"
     echo `git status --porcelain`
     echo "git status"
