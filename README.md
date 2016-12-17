@@ -12,15 +12,16 @@ Sources of landing page of
 - [scss](http://sass-lang.com/)
 - [webpack v2](https://webpack.github.io/)
 
-## TODO
+## Instruction
 
 - download sources and unzip
 
 ```bash
-$ bash <(curl -s https://raw.githubusercontent.com/botstory/boilerplate-bot-landing/feature/help/scripts/download-sources.sh)
+bash <(curl -s https://raw.githubusercontent.com/botstory/boilerplate-bot-landing/develop/scripts/download-sources.sh)
 ```
 
 Script will download boilerplate code in current directory.
+
 :warning: script will remove all files from current directory which have
 similar names as in boilerplate code. So please commit your changes 
 before run boilerplate download script.
