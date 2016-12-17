@@ -22,7 +22,7 @@ echo "|"
 echo "| Move to the project directory"
 echo "|"
 
-mv -v ${SOURCE_PROJECT}-${SOURCE_BRANCH}/{.[^.]*,*} .
+mv -rfv ${SOURCE_PROJECT}-${SOURCE_BRANCH}/{.[^.]*,*} .
 
 echo "|"
 echo "| Remove temporary files"
