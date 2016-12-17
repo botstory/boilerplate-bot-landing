@@ -25,3 +25,16 @@ Script will download boilerplate code in current directory.
 :warning: script will remove all files from current directory which have
 similar names as in boilerplate code. So please commit your changes 
 before run boilerplate download script.
+
+- setup deploy
+
+follow steps from [here](https://gist.github.com/domenic/ec8b0fc8ab45f39403dd#get-encrypted-credentials):
+   - create `deploy_key`
+     `ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`
+   - add it to the target repository
+     `https://github.com/<your name>/<your repo>/settings/keys.`
+   - encrypt it with Travis and get `encryption label`
+     `travis encrypt-file deploy_key`
+   - add `deploy_key.enc` to repository
+     `git add deploy_key.enc`
+   - update `.travis.yml` with `encryption label`
