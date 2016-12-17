@@ -26,6 +26,17 @@ Script will download boilerplate code in current directory.
 similar names as in boilerplate code. So please commit your changes 
 before run boilerplate download script.
 
+-- rename `boilerplate` to `<project-name>`
+
+```bash
+# MacOS
+PROJECT_NAME=<project-name>
+find . -type f ! -path "./.git/*" ! -path "*deploy_key*" -exec sed -i "" -e 's/boilerplate/${PROJECT_NAME}/g' {}  \;
+
+#Linus
+find . -type f ! -path "./.git/*" ! -path "*deploy_key*" -exec sed -i 's/boilerplate/${PROJECT_NAME}/g' {}  \;
+```
+
 - setup deploy
 
 follow steps from [here](https://gist.github.com/domenic/ec8b0fc8ab45f39403dd#get-encrypted-credentials):
